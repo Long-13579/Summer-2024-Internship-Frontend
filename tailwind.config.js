@@ -46,12 +46,13 @@ module.exports = {
           foreground: 'hsl(var(--card-foreground))'
         },
         main: 'var(--main-color)',
-        'white-custom-700': 'var(--white-color)',
-        'yellow-custom-700': 'var(--yellow-color)',
-        'black-custom-700': 'var(--black-color)',
-        'blue-custom-700': 'var(--blue-color)',
-        'purple-custom-700': 'var(--purple-color)',
-        'gray-custom-700': 'var(--dark-gray-color)'
+        'white-custom-700': 'var(--white-color-700)',
+        'yellow-custom-700': 'var(--yellow-color-700)',
+        'yellow-custom-700/50': 'var(--yellow-color-700-50)',
+        'black-custom-700': 'var(--black-color-700)',
+        'blue-custom-700': 'var(--blue-color-700)',
+        'purple-custom-700': 'var(--purple-color-700)',
+        'gray-custom-700': 'var(--dark-gray-color-700)'
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -74,11 +75,18 @@ module.exports = {
       },
       maxWidth: {
         container: 'var(--max-width)'
+      },
+      padding: {
+        container: '20px'
+      },
+      boxShadow: {
+        'lg-yellow-700': 'var(--shadow-lg-yellow-700)'
       }
     }
   },
   plugins: [
     require('tailwindcss-animate'),
+    require('@tailwindcss/aspect-ratio'),
     function ({ addUtilities }) {
       const values = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
