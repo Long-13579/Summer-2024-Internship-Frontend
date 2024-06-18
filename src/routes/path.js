@@ -1,5 +1,6 @@
 export const path = {
   home: '',
   login: '/login',
-  register: '/register'
+  register: '/register',
+  film: '/film/:id'
 }

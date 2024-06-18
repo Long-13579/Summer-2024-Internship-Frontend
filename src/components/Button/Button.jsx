@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils'
 import { Link } from 'react-router-dom'
+
 export default function Button({
   title,
   icon: IconComponent,
@@ -30,7 +31,7 @@ export default function Button({
           className={cn('transition-filter z-10 h-7 duration-500 ease-in-out group-hover:invert', imgClass)}
         />
       )}
-      <span className={cn('ml-sm z-10 text-lg font-bold uppercase group-hover:text-white', txtClass)}>{title}</span>
+      <span className={cn('z-10 text-lg font-bold uppercase group-hover:text-white', txtClass)}>{title}</span>
       <span
         className={cn(
           'z-1 absolute inset-0 transform rounded-md bg-yellow-custom-700 transition-transform duration-500 ease-in-out group-hover:translate-x-0',
