@@ -45,24 +45,26 @@ export default function MovieDetailInfo({ info }) {
         <div>
           <h1 className='text-3xl font-bold uppercase'>{info?.filmName}</h1>
           <ul className='mt-4'>
-            {info && GENERAL_INFO(info).map(({ text, icon: IconComponent }, index) => {
-              return (
-                <li key={index} className='my-2 flex items-center gap-3 text-lg capitalize'>
-                  <IconComponent className='h-[20px] w-[20px] text-yellow-custom-700' />
-                  <span>{text}</span>
-                </li>
-              )
-            })}
+            {info &&
+              GENERAL_INFO(info).map(({ text, icon: IconComponent }, index) => {
+                return (
+                  <li key={index} className='my-2 flex items-center gap-3 text-lg capitalize'>
+                    <IconComponent className='h-[20px] w-[20px] min-w-[20px] text-yellow-custom-700' />
+                    <span>{text}</span>
+                  </li>
+                )
+              })}
           </ul>
         </div>
         <div className='mt-6'>
           <h2 className='text-xl font-bold uppercase'>Description</h2>
           <ul className='mt-4'>
-            {info && DESCRIPTION_INFO(info).map(({ label, value }, index) => (
-              <li key={index} className='text-md my-2'>
-                {label} {value || 'Unknown'}
-              </li>
-            ))}
+            {info &&
+              DESCRIPTION_INFO(info).map(({ label, value }, index) => (
+                <li key={index} className='text-md my-2'>
+                  {label} {value || 'Unknown'}
+                </li>
+              ))}
           </ul>
         </div>
         <div className='mt-6'>

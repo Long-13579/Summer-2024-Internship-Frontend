@@ -43,8 +43,7 @@ export const getUrlPathWithQuery = ({ url: partialUrl, query = {} } = {}) => {
     ...Object.fromEntries(url.searchParams),
     ...query
   })
-
-  return `${url.href}?${searchParams}`
+  return `${url.href}${searchParams.size > 0 ? '?' : ''}${searchParams}`
 }
 
 const handleResponse = async (response) => {
