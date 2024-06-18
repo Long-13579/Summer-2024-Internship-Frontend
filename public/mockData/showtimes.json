@@ -1,0 +1,21 @@
+[
+  {
+    "cinemaId": 1,
+    "cinemaName": "CGV",
+    "cinemaAddress": "123 Nguyen Ba Hoc",
+    "shows": [
+      {
+        "showId": 1,
+        "date": "2025-05-01",
+        "time": "12:00:00",
+        "screenId": 1
+      },
+      {
+        "showId": 12,
+        "date": "2025-05-01",
+        "time": "15:00:00",
+        "screenId": 1
+      }
+    ]
+  }
+]

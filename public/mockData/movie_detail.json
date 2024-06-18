@@ -1,0 +1,31 @@
+{
+  "info": {
+    "id": 1,
+    "filmName": "The Matrix",
+    "duration": 136,
+    "description": "A computer hacker learns from mysterious rebels about the true nature of his reality.",
+    "dateStart": "2025-05-01",
+    "dateEnd": "2025-05-31",
+    "director": "Lana Wachowski",
+    "actor": "Keanu Reeves",
+    "subtitle": false,
+    "dubbing": false,
+    "language": "EN",
+    "poster": "https://res.cloudinary.com/deknjnluw/image/upload/f_auto,q_auto/v1/Test/gumballFace1?_a=BAMADKIG0",
+    "trailer": "matrix_trailer.mp4",
+    "format": "IMAX",
+    "ageRate": "15",
+    "category": "Science fiction"
+  },
+  "dateList": ["2025-05-01", "2025-05-02", "2025-05-03"],
+  "provinceList": [
+    {
+      "id": 1,
+      "name": "Da Nang"
+    },
+    {
+      "id": 2,
+      "name": "Tp. Ho Chi Minh"
+    }
+  ]
+}

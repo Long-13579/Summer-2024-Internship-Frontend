@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "name": "Da Nang",
+    "cinemas": [
+      {
+        "id": 1,
+        "name": "CGV",
+        "address": "123 Nguyen Ba Hoc"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Tp. Ho Chi Minh",
+    "cinemas": [
+      {
+        "id": 2,
+        "name": "CGV ",
+        "address": "195 Ba Trieu, Le Duan"
+      }
+    ]
+  }
+]

@@ -72,7 +72,7 @@ export default function MovieInfoTotal({ showTimeRef }) {
               )}
             </div>
             <div className='text-md font-medium'>
-              <span>{screenName}</span>
+              <span>Screen: {screenName}</span>
               {seatNames && <span> | {seatNames}</span>}
               <span> | {getHourAndMinute(selectedShowtime.timeStart)}</span>
             </div>

@@ -1,0 +1,43 @@
+[
+  {
+    "id": 1,
+    "name": "CGV",
+    "address": "123 Nguyen Ba Hoc",
+    "provinceCityId": 1,
+    "screens": [
+      {
+        "name": "Lahm",
+        "size": "S",
+        "status": true
+      },
+      {
+        "name": "Goetzer",
+        "size": "L",
+        "status": true
+      },
+      {
+        "name": "Dai Duc",
+        "size": null,
+        "status": false
+      },
+      {
+        "name": "Da Khac",
+        "size": null,
+        "status": false
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "CGV ",
+    "address": "195 Ba Trieu, Le Duan",
+    "provinceCityId": 2,
+    "screens": [
+      {
+        "name": "wirtz",
+        "size": null,
+        "status": false
+      }
+    ]
+  }
+]
