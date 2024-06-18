@@ -24,20 +24,24 @@ export default function SlideFilmContainer() {
 
   return (
     <div className='mb-8 flex w-full flex-col items-center'>
-      <div className='relative max-w-container px-[12px] text-center'>
-        <h1 className='py-10 font-sans text-4xl font-bold'>NOW SHOWING</h1>
-        <SlideFilm films={onCasting} className='-mx-2' />
-        <div className='mt-12 flex justify-center'>
-          <Button title='View All' link='/film/nowshowing' />
+      {onCasting && onCasting.length > 0 && (
+        <div className='relative max-w-container px-[12px] text-center'>
+          <h1 className='py-10 font-sans text-4xl font-bold'>NOW SHOWING</h1>
+          <SlideFilm films={onCasting} className='-mx-2' />
+          <div className='mt-12 flex justify-center'>
+            <Button title='View All' link='/film/nowshowing' />
+          </div>
         </div>
-      </div>
-      <div className='relative max-w-container px-container text-center'>
-        <h1 className='py-10 font-sans text-4xl font-bold'>COMING SOON</h1>
-        <SlideFilm films={upComing} />
-        <div className='mt-12 flex justify-center'>
-          <Button title='View All' link='/film/comingsoon' extraClass='p' />
+      )}
+      {upComing && upComing.length > 0 && (
+        <div className='relative max-w-container px-container text-center'>
+          <h1 className='py-10 font-sans text-4xl font-bold'>COMING SOON</h1>
+          <SlideFilm films={upComing} />
+          <div className='mt-12 flex justify-center'>
+            <Button title='View All' link='/film/comingsoon' extraClass='p' />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }

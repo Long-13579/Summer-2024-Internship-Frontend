@@ -9,7 +9,7 @@ export const LINE_COUNT = 4
 
 export const GENERAL_INFO = ({ category, duration, language = 'No subtitle', ageRate = AGE_RATING.U } = {}) => [
   { icon: IconTag, text: category },
-  { icon: IconClock, text: duration },
+  { icon: IconClock, text: `${duration}'` },
   { icon: IconMessage, text: `Subtitle: ${language}` },
   { icon: IconPersonCheck, text: AGE_RATING[ageRate] }
 ]

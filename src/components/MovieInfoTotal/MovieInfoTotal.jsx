@@ -1,6 +1,12 @@
 import Button from '@/components/Button'
 import IconClose from '@/assets/images/ic-close.svg?react'
-import { countSelectedSeats, selectedSeatNamesString, clearShowtime } from '@/redux/slices/bookTicket'
+import {
+  countSelectedSeats,
+  selectedSeatNamesString,
+  clearShowtime,
+  getTotalPriceOfSelectedSeats,
+  getTicketInfo
+} from '@/redux/slices/bookTicket'
 import { getHourAndMinute } from '@/utils/datetime'
 import { useDispatch, useSelector } from 'react-redux'
 import { path } from '@/routes/path'
@@ -8,13 +14,19 @@ import { setSeatsOnHold } from '@/apis/seat'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import moment from 'moment'
+import { formatPrice } from '@/utils/price'
+import { setTicketInfoToLocalStorage } from '@/utils/localStorage'
 
 export default function MovieInfoTotal({showTimeRef}) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { selectedFilm, selectedShowtime, selectedCinemaShow, seatList } = useSelector((state) => state.bookTicket)
+  const { selectedFilm, selectedShowtime, selectedCinemaShow, seatList, screenName } = useSelector(
+    (state) => state.bookTicket
+  )
   const seatNames = useSelector(selectedSeatNamesString)
   const numOfSelectedSeats = useSelector(countSelectedSeats)
+  const totalPrice = useSelector(getTotalPriceOfSelectedSeats)
+  const ticketInfo = useSelector(getTicketInfo)
 
   const handleClose = () => {
     dispatch(clearShowtime())
@@ -27,13 +39,14 @@ export default function MovieInfoTotal({showTimeRef}) {
     const currentTime = moment().format()
     try {
       await setSeatsOnHold(
-        selectedShowtime.showId,
+        selectedShowtime.id,
         seatList.map(({ colId, name }) => ({
           rowName: name[0],
           colId: colId,
           onHold: currentTime
         }))
       )
+      setTicketInfoToLocalStorage(ticketInfo)
       navigate(path.checkout)
     } catch (error) {
       toast.error(error)
@@ -56,7 +69,7 @@ export default function MovieInfoTotal({showTimeRef}) {
               )}
             </div>
             <div className='text-md font-medium'>
-              <span>Screen: {selectedShowtime.screenId}</span>
+              <span>{screenName}</span>
               {seatNames && <span> | {seatNames}</span>}
               <span> | {getHourAndMinute(selectedShowtime.timeStart)}</span>
             </div>
@@ -64,7 +77,7 @@ export default function MovieInfoTotal({showTimeRef}) {
           <div className='flex h-full w-[250px] min-w-[250px] flex-col justify-between gap-2'>
             <div className=''>
               <div className='text-md font-medium'>Temporary price calculation</div>
-              <div className='text-2xl font-bold'>0 VND</div>
+              <div className='text-2xl font-bold'>{formatPrice(totalPrice) || 0} VND</div>
             </div>
             <Button title='Booking' onClick={handleSubmitSeats} />
           </div>

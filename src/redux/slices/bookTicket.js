@@ -1,11 +1,14 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit'
 import lodash from 'lodash'
 import { NOT_FOUND, REMOVE_ONE_ITEM, SORT_ORDER } from './constants'
+import moment from 'moment'
 
 const initialState = {
   selectedFilm: null,
   selectedShowtime: null,
   selectedCinemaShow: null,
+  screenName: null,
+  seatPrice: 0,
   seatList: []
 }
 
@@ -21,6 +24,12 @@ const bookTicketSlice = createSlice({
     },
     setSelectedCinemaShow: (state, action) => {
       state.selectedCinemaShow = action.payload
+    },
+    setScreenName: (state, action) => {
+      state.screenName = action.payload
+    },
+    setSeatPrice: (state, action) => {
+      state.seatPrice = action.payload
     },
     toggleSelectedSeat: (state, action) => {
       const { name } = action.payload
@@ -39,11 +48,11 @@ const bookTicketSlice = createSlice({
       state.selectedShowtime = null
       state.selectedCinemaShow = null
       state.seatList = []
+      state.screenName = null 
+      state.seatPrice = 0
     }
   }
 })
-
-export const getSelectedShowtime = (state) => state.bookTicket.selectedShowtime
 
 export const countSelectedSeats = createSelector(
   (state) => state.bookTicket.seatList,
@@ -73,10 +82,40 @@ export const isSelectedSeat = createSelector(
   (seat, seatList) => seatList.some((s) => lodash.isEqual(s, seat))
 )
 
+export const getTotalPriceOfSelectedSeats = createSelector(
+  (state) => state.bookTicket.seatList.length,
+  (state) => state.bookTicket.seatPrice,
+  (numOfSeats, price) => {
+    return numOfSeats * price
+  }
+)
+
+export const getTicketInfo = createSelector(
+  (state) => state.bookTicket.selectedFilm,
+  (state) => state.bookTicket.selectedShowtime,
+  (state) => state.bookTicket.selectedCinemaShow,
+  (state) => state.bookTicket.seatList,
+  (state) => state.bookTicket.screenName,
+  selectedSeatNamesString,
+  getTotalPriceOfSelectedSeats,
+  (selectedFilm, selectedShowtime, selectedCinemaShow, seatList, screenName, seatNamesString, totalPrice) => ({
+    film: selectedFilm,
+    showtime: selectedShowtime,
+    cinemaShow: selectedCinemaShow,
+    seatList: seatList,
+    seatNames: seatNamesString,
+    screenName,
+    totalPrice,
+    expiredTime: moment().add(5, 'minutes').toISOString()
+  })
+)
+
 export const {
   setSelectedFilm,
   setSelectedShowtime,
   setSelectedCinemaShow,
+  setScreenName,
+  setSeatPrice,
   toggleSelectedSeat,
   clearSeatList,
   clearShowtime

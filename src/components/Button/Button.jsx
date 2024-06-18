@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Button({
   title,
@@ -11,11 +11,25 @@ export default function Button({
   rootColorClass = '',
   hoverColorClass = '',
   disabled = false,
+  type = 'button',
+  handleSubmit,
   ...rest
 }) {
+  const navigate = useNavigate()
+  const handleClick = (event) => {
+    if (type === 'submit') {
+      event.preventDefault()
+      if (handleSubmit) {
+        handleSubmit(event)
+      }
+    } else if (type === 'button' && !disabled && link) {
+      navigate(link)
+    }
+  }
+
   return (
-    <Link
-      to={link}
+    <button
+      type={type}
       className={cn(
         'group relative flex items-center justify-center gap-2 overflow-hidden rounded-md px-4 py-2 text-black transition-colors duration-1000 ease-in-out hover:cursor-pointer hover:text-white',
         extraClass,
@@ -24,6 +38,7 @@ export default function Button({
           'group hover:cursor-pointer hover:text-white': !disabled
         }
       )}
+      onClick={handleClick}
       {...rest}
     >
       {IconComponent && (
@@ -44,6 +59,6 @@ export default function Button({
           hoverColorClass
         )}
       ></span>
-    </Link>
+    </button>
   )
 }

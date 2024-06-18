@@ -22,32 +22,18 @@ export default function useRouteElements() {
         {
           path: path.film,
           element: <MovieDetailPage />
-        }
-      ]
-    },
-    {
-      path: 'film/nowshowing',
-      element: <MainLayout />,
-      children: [
+        },
         {
           path: path.nowShowing,
-          element: <OnCasting />,
-          index: true
-        }
-      ]
-    },
-    {
-      path: path.checkout,
-      element: <CheckoutPage />
-    },
-    {
-      path: 'film/comingsoon',
-      element: <MainLayout />,
-      children: [
+          element: <OnCasting />
+        },
         {
           path: path.comingSoon,
-          element: <UpComing />,
-          index: true
+          element: <UpComing />
+        },
+        {
+          path: path.checkout,
+          element: <CheckoutPage />
         }
       ]
     }

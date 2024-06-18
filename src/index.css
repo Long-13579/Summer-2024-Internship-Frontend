@@ -52,6 +52,7 @@
     --gray-color-700: #21283a;
     --gray-color-800: #808080;
     --gray-color-900: #18191c;
+    --orange-color-700: #ff7000;
 
     /* Shadow */
     --shadow-lg-yellow-700: 0 12px 48px 0 var(--yellow-color-700-50);

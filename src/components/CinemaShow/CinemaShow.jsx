@@ -1,6 +1,6 @@
 import IconArrowUp from '@/assets/images/ic-arrow-up.svg?react'
 import IconArrowDown from '@/assets/images/ic-arrow-down.svg?react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { getHourAndMinute, isCurrentTimeGreaterThan } from '@/utils/datetime'
 import { useDispatch, useSelector } from 'react-redux'
