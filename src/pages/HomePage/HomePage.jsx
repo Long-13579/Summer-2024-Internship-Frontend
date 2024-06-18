@@ -1,11 +1,11 @@
 import MembershipContainer from '@/components/MembershipContainer'
-import Contact from "@/components/Contact";
+import Contact from '@/components/Contact'
 
 export default function HomePage() {
   return (
-    <div className="bg-primary text-white min-h-screen">
+    <div className='min-h-screen bg-primary text-white'>
       <MembershipContainer />
-      <Contact/>
+      <Contact />
     </div>
   )
 }
