@@ -74,7 +74,48 @@ const convertFiltersToUtilities = (filters) => {
   return utilities
 }
 
+const getUnderlineOffsetUtilities = (maxValue) => {
+  const values = Array.from({ length: maxValue }, (_, i) => i)
+
+  const underlineOffset = values.reduce((acc, value) => {
+    return {
+      ...acc,
+      [`.underline-offset-${value}`]: {
+        textUnderlineOffset: `${value}px`
+      }
+    }
+  }, {})
+
+  return underlineOffset
+}
+
+const MAX_UNDERLINE_OFFSET = 10
+const underlineOffsetUtilities = getUnderlineOffsetUtilities(MAX_UNDERLINE_OFFSET)
+
 const filterUtilities = convertFiltersToUtilities(filters)
+
+const expandUtilities = {
+  '.expand-enter': {
+    maxHeight: '0',
+    overflow: 'hidden',
+    opacity: '0'
+  },
+  '.expand-enter-active': {
+    maxHeight: '100px',
+    opacity: '1',
+    transition: 'all 0.3s ease-in-out'
+  },
+  '.expand-exit': {
+    maxHeight: '100px',
+    overflow: 'hidden',
+    opacity: '1'
+  },
+  '.expand-exit-active': {
+    maxHeight: '0',
+    opacity: '0',
+    transition: 'all 0.3s ease-in-out'
+  }
+}
 
 module.exports = {
   darkMode: ['class'],
@@ -175,19 +216,9 @@ module.exports = {
     require('tailwindcss-animate'),
     require('@tailwindcss/aspect-ratio'),
     function ({ addUtilities }) {
-      const values = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-
-      const underlineOffset = values.reduce((acc, value) => {
-        return {
-          ...acc,
-          [`.underline-offset-${value}`]: {
-            textUnderlineOffset: `${value}px`
-          }
-        }
-      }, {})
-
-      addUtilities(underlineOffset, ['responsive', 'hover'])
+      addUtilities(underlineOffsetUtilities, ['responsive', 'hover'])
       addUtilities(filterUtilities, ['responsive', 'hover'])
+      addUtilities(expandUtilities, ['responsive', 'hover'])
     }
   ]
 }
