@@ -14,9 +14,10 @@ export const getCinemaShowOfFilm = async (filmId, dateStart, provinceCityId) => 
     .catch(showError)
 }
 
-export const getShowInfo = async (showId) => {
+export const getShowInfo = async (id) => {
   return await customFetch
-    .get(`${SHOW_URL}/${showId}`, {
+    .get(SHOW_URL, {
+      query: { id },
       signalKey: 'getShowInfo'
     })
     .catch(showError)
