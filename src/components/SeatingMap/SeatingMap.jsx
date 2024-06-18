@@ -3,24 +3,30 @@ import ImgScreen from '@/assets/images/img-screen.png'
 import Seat from '@/components/Seat'
 import SeatLegendItem from '@/components/SeatLegendItem'
 import SingleSeat from '@/assets/images/seat-single.svg?react'
-import { useSelector } from 'react-redux'
-import { getSelectedShowtime } from '@/redux/slices/bookTicket'
+import { useDispatch, useSelector } from 'react-redux'
+import { setScreenName, setSeatPrice } from '@/redux/slices/bookTicket'
 import { getShowInfo } from '@/apis/show'
 
 const SeatingMap = forwardRef((_, ref) => {
-  const selectedShowtime = useSelector(getSelectedShowtime)
+  const { selectedShowtime } = useSelector((state) => state.bookTicket)
   const [seats, setSeats] = useState(null)
   const tableRef = useRef(null)
   const [tableWidth, setTableWidth] = useState('auto')
+  const dispatch = useDispatch()
 
   const fetchShowInfo = async (showId) => {
-    const showInfo = await getShowInfo(showId)
-    setSeats(JSON.parse(showInfo?.seatMatrix).data)
+    const response = await getShowInfo(showId)
+    if (response) {
+      const { seatMatrix, screen, price } = await getShowInfo(showId)
+      setSeats(JSON.parse(seatMatrix).data)
+      dispatch(setScreenName(screen.name))
+      dispatch(setSeatPrice(price))
+    }
   }
 
   useEffect(() => {
     fetchShowInfo(selectedShowtime.id)
-  }, [])
+  }, [selectedShowtime])
 
   useEffect(() => {
     if (tableRef.current) {

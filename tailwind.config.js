@@ -177,7 +177,8 @@ module.exports = {
         'gray-custom-500': 'var(--gray-color-500)',
         'gray-custom-700': 'var(--gray-color-700)',
         'gray-custom-800': 'var(--gray-color-800)',
-        'gray-custom-900': 'var(--gray-color-900)'
+        'gray-custom-900': 'var(--gray-color-900)',
+        'orange-custom-700': 'var(--orange-color-700)'
       },
       borderRadius: {
         lg: 'var(--radius)',

@@ -115,7 +115,7 @@ const ShowTime = forwardRef(({ film }, ref) => {
           </div>
         </div>
         <div className='mt-4 flex flex-col gap-4'>
-          {!cinemaShows && (
+          {(!cinemaShows || cinemaShows.length === 0) && (
             <div className='flex items-center gap-4 rounded-sm bg-gray-custom-500 px-6 py-5 text-xl font-semibold text-white-custom-700'>
               <IconMovie className='h-[28px] w-[28px]' />
               <span>There are currently no movies showing at this location</span>

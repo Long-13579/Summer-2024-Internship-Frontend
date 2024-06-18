@@ -31,3 +31,14 @@ export const getHourAndMinute = (time) => {
   }
   return null
 }
+
+export const getMinuteAndSecond = (remainingSeconds) => {
+  const duration = moment.duration(remainingSeconds, 'seconds')
+  return moment.utc(duration.asMilliseconds()).format('mm:ss')
+}
+
+export const getDifferenceInSeconds = (expiredTime) => {
+  const now = moment()
+  const expiration = moment(expiredTime)
+  return expiration.diff(now, 'seconds')
+}
