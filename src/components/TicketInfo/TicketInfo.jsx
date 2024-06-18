@@ -28,8 +28,8 @@ export default function TicketInfo() {
     if (!ticketInfoFromLS) {
       navigate('/')
     } else {
-      setTicketInfo(ticketInfoFromLS)
       setRemainingSeconds(getDifferenceInSeconds(ticketInfoFromLS.expiredTime))
+      setTicketInfo(ticketInfoFromLS)
     }
   }, [])
 

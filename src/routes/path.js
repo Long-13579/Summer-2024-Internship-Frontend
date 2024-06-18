@@ -5,5 +5,6 @@ export const path = {
   film: '/film/:id',
   checkout: '/checkout',
   nowShowing: '/film/nowShowing',
-  comingSoon: '/film/comingSoon'
+  comingSoon: '/film/comingSoon',
+  cinemaShows: '/cinemaShows/:id'
 }

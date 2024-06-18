@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import PaymentMethod from '@/components/PaymentMethod'
 import { BOOK_TICKET_STEP } from '@/constants/bookTicket'
 import UserInfoContainer from '@/components/UserInfoContainer'
-import { setCheckoutStepId } from '@/redux/slices/bookTicket'
+import { setCheckoutStepId, setUserInfo } from '@/redux/slices/bookTicket'
 import _ from 'lodash'
 import { toast } from 'react-toastify'
 import { setPaymentStatus } from '@/apis/ticket'
@@ -22,8 +22,12 @@ export default function CheckoutPage() {
 
   const getPaymentInformation = async (ticketId) => {
     try {
-      await setPaymentStatus(ticketId)
-      dispatch(setCheckoutStepId(BOOK_TICKET_STEP.SHOW_TICKET_INFO))
+      const response = await setPaymentStatus(ticketId)
+      if (response) {
+        const { clientName: name, email, phone } = response
+        dispatch(setUserInfo({ name, email, phone }))
+        dispatch(setCheckoutStepId(BOOK_TICKET_STEP.SHOW_TICKET_INFO))
+      }
     } catch (error) {
       toast.error(`Failed to get payment information: ${error}`)
     }

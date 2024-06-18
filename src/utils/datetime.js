@@ -26,6 +26,12 @@ export const isCurrentTimeGreaterThan = (givenDate, givenTime) => {
   return null
 }
 
+export const isCurrentTimeWithOtherTimezoneGreaterThan = (givenTime) => {
+  const currentTime = moment()
+  const givenMoment = moment(givenTime)
+  return currentTime.isAfter(givenMoment)
+}
+
 export const getHourAndMinute = (time) => {
   if (time) {
     return moment(time, 'HH:mm:ss').format('HH:mm')
