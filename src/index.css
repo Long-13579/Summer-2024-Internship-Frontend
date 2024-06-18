@@ -43,9 +43,15 @@
     --yellow-color-700: #f3ea28;
     --yellow-color-700-50: rgba(243, 234, 40, 0.5);
     --black-color-700: #0f172a;
+    --blue-color-100: #dcedfa;
     --blue-color-700: #3960c5;
     --purple-color-700: #63369c;
-    --dark-gray-color-700: #21283a;
+    --gray-color-100: #e8eced;
+    --gray-color-400: #94a3b8;
+    --gray-color-500: #64748b;
+    --gray-color-700: #21283a;
+    --gray-color-800: #808080;
+    --gray-color-900: #18191c;
 
     /* Shadow */
     --shadow-lg-yellow-700: 0 12px 48px 0 var(--yellow-color-700-50);
