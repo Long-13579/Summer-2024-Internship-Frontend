@@ -4,8 +4,8 @@ import Button from '@/components/Button'
 import { Icons } from '@/components/FilmCard/constant'
 import IconPlayVideo from '@/assets/images/ic-play-video.svg?react'
 
-const FilmCard = ({ Film }) => {
-  const { id, title, poster, ageRating, format, category, duration, nation, subtitle } = Film
+const FilmCard = ({ film }) => {
+  const { id, title, poster, ageRating, format, category, duration, nation, subtitle } = film
   const [isDragging, setIsDragging] = useState(false)
 
   const handleMouseDown = () => {
