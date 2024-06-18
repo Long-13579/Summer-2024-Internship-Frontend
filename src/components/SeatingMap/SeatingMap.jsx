@@ -8,7 +8,7 @@ import { setScreenName, setSeatPrice } from '@/redux/slices/bookTicket'
 import { getShowInfo } from '@/apis/show'
 
 const SeatingMap = forwardRef((_, ref) => {
-  const { selectedShowtime } = useSelector((state) => state.bookTicket)
+  const { selectedShowtime, screenName } = useSelector((state) => state.bookTicket)
   const [seats, setSeats] = useState(null)
   const tableRef = useRef(null)
   const [tableWidth, setTableWidth] = useState('auto')
@@ -36,9 +36,7 @@ const SeatingMap = forwardRef((_, ref) => {
 
   return (
     <div className='mt-10 pb-10' ref={ref}>
-      <h1 className='w-full text-center text-3xl font-bold uppercase'>
-        Select Seats - Screen {selectedShowtime.screenId}
-      </h1>
+      {screenName && <h1 className='w-full text-center text-3xl font-bold uppercase'>Select Seats - {screenName}</h1>}
       <div className='relative mx-auto mt-10' style={{ width: tableWidth }}>
         <img src={ImgScreen} alt='screen' />
         <h4 className='absolute left-1/2 top-[6px] -translate-x-1/2 text-xl font-bold tracking-wider'>Screen</h4>

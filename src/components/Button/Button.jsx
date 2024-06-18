@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function Button({
   title,

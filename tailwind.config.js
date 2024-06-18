@@ -64,7 +64,6 @@ const getFilterString = (filterValue) => {
 
 const convertFiltersToUtilities = (filters) => {
   const utilities = {}
-
   filters.forEach((filter) => {
     const filterString = getFilterString(filter.filterValue)
     utilities[filter.name] = {

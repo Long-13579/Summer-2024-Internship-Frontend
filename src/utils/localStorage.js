@@ -9,3 +9,15 @@ export const getTicketInfoFromLocalStorage = () => {
 export const removeTicketInfoFromLocalStorage = () => {
   localStorage.removeItem('ticketInfo')
 }
+
+export const setUserInfoToLocalStorage = (userInfo) => {
+  localStorage.setItem('userInfo', JSON.stringify(userInfo))
+}
+
+export const getUserInfoFromLocalStorage = () => {
+  return JSON.parse(localStorage.getItem('userInfo'))
+}
+
+export const removeUserInfoFromLocalStorage = () => {
+  localStorage.removeItem('userInfo')
+}

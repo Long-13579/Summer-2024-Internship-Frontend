@@ -26,7 +26,7 @@ export default function Seat({ seat }) {
           <SingleSeat
             className={cn('h-[30px] w-[40px]', {
               'filter-dark-gray-custom': isSold,
-              'filter-blue-custom': onHold,
+              'filter-blue-custom': !isSold && onHold,
               'filter-yellow-custom': isSelected
             })}
           />

@@ -3,5 +3,7 @@ export const path = {
   login: '/login',
   register: '/register',
   film: '/film/:id',
-  checkout: '/checkout'
+  checkout: '/checkout',
+  nowShowing: '/film/nowShowing',
+  comingSoon: '/film/comingSoon'
 }
