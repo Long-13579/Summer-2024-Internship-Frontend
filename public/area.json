@@ -1,0 +1,53 @@
+{
+  "data": [
+    {
+      "id": "44eb9a3b-a1fb-45a4-898e-1c0ae39e84dc",
+      "maps": "10.7830964,106.6596867",
+      "name_en": "Ho Chi Minh City",
+      "name_vn": "Hồ Chí Minh",
+      "orderby": "9"
+    },
+    {
+      "id": "506018c7-c3a6-4113-9112-01cbad73d0a7",
+      "maps": "11.9383906,108.4457458",
+      "name_en": "Da Lat",
+      "name_vn": "Đà Lạt",
+      "orderby": "10"
+    },
+    {
+      "id": "e2c7d28c-2f95-444d-b9ff-aa6684af4ad8",
+      "maps": "10.8751203,106.7977216",
+      "name_en": "Binh Duong",
+      "name_vn": "Bình Dương",
+      "orderby": "11"
+    },
+    {
+      "id": "3a10a529-c2e3-4d88-8ad5-f3d653849c0d",
+      "maps": "16.4609622,107.5897538",
+      "name_en": "Hue",
+      "name_vn": "Huế",
+      "orderby": "12"
+    },
+    {
+      "id": "b27fe633-a4a1-4df4-81e2-23b3da44f7ec",
+      "maps": "10.3556536,106.3703434",
+      "name_en": "Tien Giang",
+      "name_vn": "Tiền Giang",
+      "orderby": "13"
+    },
+    {
+      "id": "18b96581-f9e9-4216-97b4-78b49c54d5c5",
+      "maps": "9.9531846,105.1210019",
+      "name_en": "Kien Giang",
+      "name_vn": "Kiên Giang",
+      "orderby": "14"
+    },
+    {
+      "id": "55e2182d-e5b8-4b74-b791-abf55f770b67",
+      "maps": "11.727969,108.3708424",
+      "name_en": "Lam Dong",
+      "name_vn": "Lâm Đồng",
+      "orderby": "15"
+    }
+  ]
+}

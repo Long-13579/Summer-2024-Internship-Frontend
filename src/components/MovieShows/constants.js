@@ -4,7 +4,7 @@ import IconMessage from '@/assets/images/ic-message.svg?react'
 import IconPersonCheck from '@/assets/images/ic-person-check.svg?react'
 import { AGE_RATING } from '@/constants/movie'
 
-export const MOVIE_INFO = ({ category, duration, subtitle = null, language = '', ageRate = 'U' }) => [
+export const MOVIE_INFO = ({ category, duration, subtitle = false, language = null, ageRate = 'U' }) => [
   {
     icon: IconTag,
     text: category
@@ -15,7 +15,7 @@ export const MOVIE_INFO = ({ category, duration, subtitle = null, language = '',
   },
   {
     icon: IconMessage,
-    text: subtitle ? language : ''
+    text: subtitle && language ? language : 'No subtitle'
   },
   {
     icon: IconPersonCheck,

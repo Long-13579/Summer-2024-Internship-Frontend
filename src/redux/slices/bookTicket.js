@@ -118,7 +118,7 @@ export const getTicketInfo = createSelector(
     seatList: seatList,
     seatNames: seatNamesString,
     screenName,
-    totalPrice,
+    totalPrice: totalPrice,
     expiredTime: moment().add(5, 'minutes').toISOString()
   })
 )
