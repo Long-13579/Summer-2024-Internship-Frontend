@@ -13,7 +13,7 @@ export default function ShowTime({ film }) {
   const [isShowList, setIsShowList] = useState(false)
   const [selectedProvinceCity, setSelectedProvinceCity] = useState(null)
   const [selectedDate, setSelectedDate] = useState(null)
-  const [cinemaShows, setCinemaShows] = useState(null)
+  const [cinemaShows, setCinemaShows] = useState([])
 
   const listRef = useRef(null)
 

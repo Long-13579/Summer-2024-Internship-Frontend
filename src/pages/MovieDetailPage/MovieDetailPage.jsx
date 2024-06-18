@@ -1,5 +1,6 @@
 import { getInformationOfFilm } from '@/apis/film'
 import MovieDetailInfo from '@/components/MovieDetailInfo'
+import MovieInfoTotal from '@/components/MovieInfoTotal'
 import SeatingMap from '@/components/SeatingMap'
 import ShowTime from '@/components/ShowTime'
 import { useEffect, useState } from 'react'
@@ -27,6 +28,7 @@ export default function MovieDetailPage() {
         <ShowTime film={filmDetail} />
         {selectedShowtime && <SeatingMap />}
       </div>
+      {selectedShowtime && <MovieInfoTotal />}
     </div>
   )
 }
