@@ -26,14 +26,14 @@ export default function useRouteElements() {
         },
         {
           path: path.nowShowing,
-          element: <OnCasting />
+          element: <OnCasting />,
         },
         {
           path: path.comingSoon,
-          element: <UpComing />
+          element: <UpComing />,
         },
-        {
-          path: path.checkout,
+        {  
+          path: path.checkout, 
           element: <CheckoutPage />
         },
         {

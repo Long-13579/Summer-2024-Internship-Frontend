@@ -68,7 +68,7 @@ export default function CheckoutPage() {
             </div>
             {checkoutStepId === BOOK_TICKET_STEP.FILL_USER_INFO && <UserInfoForm />}
             {checkoutStepId === BOOK_TICKET_STEP.CHOOSE_PAYMENT_METHOD && <PaymentMethod />}
-            {checkoutStepId === BOOK_TICKET_STEP.SHOW_TICKET_INFO && <UserInfoContainer />}
+            {checkoutStepId === BOOK_TICKET_STEP.SHOW_TICKET_INFO && <UserInfoContainer ticketId={ticketId} />}
           </div>
           <TicketInfo />
         </div>

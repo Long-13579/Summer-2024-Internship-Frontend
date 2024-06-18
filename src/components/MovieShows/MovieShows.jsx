@@ -43,7 +43,7 @@ export default function MovieShows({ movie }) {
         </div>
         <div className='mt-2 flex w-full flex-col gap-y-[6px]'>
           {movie.showTime.map((showTime) => (
-            <ShowsWithinDay key={showTime.dateStart} showTime={showTime} />
+            <ShowsWithinDay key={showTime.dateStart} filmId={movie.infor.id} showTime={showTime} />
           ))}
         </div>
       </div>

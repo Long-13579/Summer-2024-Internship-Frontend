@@ -37,11 +37,12 @@ export default function TicketInfo() {
   useEffect(() => {
     if (remainingSeconds === null || checkoutStepId === BOOK_TICKET_STEP.SHOW_TICKET_INFO) return
     if (!remainingSeconds) {
+      console.log('ticketInfo', ticketInfo?.film?.filmInfo?.id)
       dispatch(setIsShowPopUp(true))
       dispatch(
         setPopUpContent({
           ...EXPIRED_TICKET_TIME,
-          link: `${path.movie.replace(':id', ticketInfo?.film?.filmInfo?.id)}`
+          link: `${path.film.replace(':id', ticketInfo?.film?.filmInfo?.id)}`
         })
       )
       removeTicketInfoFromLocalStorage()
