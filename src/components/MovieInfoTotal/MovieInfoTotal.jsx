@@ -63,7 +63,7 @@ export default function MovieInfoTotal({ showTimeRef }) {
           <div className='flex flex-grow flex-col justify-center gap-3'>
             <div className='line-clamp-1 text-xl font-bold'>{selectedFilm?.filmInfo.filmName}</div>
             <div className='text-md font-normal'>
-              <span>{selectedCinemaShow.name}</span>
+              <span>{selectedCinemaShow?.name}</span>
               {numOfSelectedSeats > 0 && (
                 <span>
                   {' '}
@@ -72,7 +72,7 @@ export default function MovieInfoTotal({ showTimeRef }) {
               )}
             </div>
             <div className='text-md font-medium'>
-              <span>Screen: {screenName}</span>
+              <span>{screenName}</span>
               {seatNames && <span> | {seatNames}</span>}
               <span> | {getHourAndMinute(selectedShowtime.timeStart)}</span>
             </div>

@@ -4,10 +4,18 @@ import { cn } from '@/lib/utils'
 import { useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { formatDate, getHourAndMinute, isCurrentTimeGreaterThan } from '@/utils/datetime'
+import { useNavigate, useParams } from 'react-router-dom'
+import { path } from '@/routes/path'
 
-export default function ShowsWithinDay({ showTime }) {
+export default function ShowsWithinDay({ filmId, showTime }) {
+  const navigate = useNavigate()
+  const params = useParams()
   const [isExpanded, setIsExpanded] = useState(false)
   const toggleExpanded = () => setIsExpanded(!isExpanded)
+
+  const handleSelectShowtime = (show) => {
+    navigate(`${path.film.replace(':id', filmId)}?cinemaId=${params.id}&showId=${show.id}`)
+  }
 
   return (
     <div className='w-full overflow-hidden rounded-sm border border-white-custom-700'>
@@ -36,6 +44,7 @@ export default function ShowsWithinDay({ showTime }) {
                   'border-white-custom-700 text-white-custom-700 hover:cursor-pointer hover:border-yellow-custom-700 hover:text-yellow-custom-700':
                     !isCurrentTimeGreaterThan(getHourAndMinute(show.timeStart))
                 })}
+                onClick={() => handleSelectShowtime(show)}
               >
                 {getHourAndMinute(show.timeStart)}
               </div>

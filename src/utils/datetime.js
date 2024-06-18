@@ -3,9 +3,8 @@ import moment from 'moment'
 export const formatDate = (dateString, template = 'DD/MM/YYYY') => {
   if (dateString) {
     return moment(dateString).format(template)
-  } else {
-    return null
   }
+  return null
 }
 
 export const getDayOfWeek = (dateString) => {
