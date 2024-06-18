@@ -8,7 +8,7 @@ export default function MainLayout() {
     <>
       <HeaderUser />
       <Menu />
-      <div className='mx-auto my-0 block max-w-container pt-[var(--header-menu-height)]'>
+      <div className='mx-auto my-0 block pt-[var(--header-menu-height)]'>
         <Outlet />
       </div>
     </>

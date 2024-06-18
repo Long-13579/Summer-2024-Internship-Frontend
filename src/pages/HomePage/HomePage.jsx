@@ -1,3 +1,5 @@
+import MembershipContainer from '@/components/MembershipContainer'
+
 export default function HomePage() {
-  return <div>Home</div>
+  return <MembershipContainer />
 }

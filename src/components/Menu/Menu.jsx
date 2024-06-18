@@ -19,7 +19,7 @@ export default function Menu() {
   }, [])
 
   return (
-    <nav className='fixed left-0 right-0 top-[var(--header-user-height)] h-[var(--menu-height)] bg-main text-white'>
+    <nav className='fixed left-0 right-0 top-[var(--header-user-height)] z-50 h-[var(--menu-height)] bg-main text-white'>
       <div className='mx-auto my-0 flex h-full max-w-container items-center px-[20px]'>
         <div className='flex h-full w-full items-center justify-between border-t-[2px] border-gray-custom-700'>
           <div className='flex h-full items-center gap-7 text-white'>

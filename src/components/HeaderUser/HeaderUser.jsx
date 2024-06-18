@@ -8,7 +8,7 @@ import { path } from '@/routes/path'
 
 export default function HeaderUser() {
   return (
-    <header className='fixed left-0 right-0 top-0 h-[var(--header-user-height)] bg-main text-white'>
+    <header className='fixed left-0 right-0 top-0 z-50 h-[var(--header-user-height)] bg-main text-white'>
       <div className='mx-auto my-0 flex h-full max-w-container items-center justify-between px-[20px]'>
         <div className='flex items-center gap-8'>
           <Link to={path.home}>
