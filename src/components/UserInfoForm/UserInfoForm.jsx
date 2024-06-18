@@ -7,6 +7,8 @@ import { useDispatch } from 'react-redux'
 import { setIsShowPopUp, setPopUpContent } from '@/redux/slices/ui'
 import { CONFIRM_AGE_RATE, CONFIRM_TERMS } from './constants'
 import Checkbox from '@/components/Checkbox'
+import { BOOK_TICKET_STEP } from '@/constants/bookTicket'
+import { setCheckoutStepId, setUserInfo } from '@/redux/slices/bookTicket'
 
 export default function UserInfoForm() {
   const {
@@ -19,9 +21,10 @@ export default function UserInfoForm() {
     resolver: yupResolver(schema)
   })
   const dispatch = useDispatch()
-
   const onSubmit = handleSubmit((data) => {
-    // TODO: check API and forward to next step4
+    const { name, phoneNumber, email } = data
+    dispatch(setUserInfo({ name, phoneNumber, email }))
+    dispatch(setCheckoutStepId(BOOK_TICKET_STEP.CHOOSE_PAYMENT_METHOD))
   })
 
   const handleSubmitForm = (event) => {

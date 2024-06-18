@@ -1,0 +1,5 @@
+export const BOOK_TICKET_STEP = Object.freeze({
+  FILL_USER_INFO: 1,
+  CHOOSE_PAYMENT_METHOD: 2,
+  SHOW_TICKET_INFO: 3
+})

@@ -5,7 +5,8 @@ import {
   selectedSeatNamesString,
   clearShowtime,
   getTotalPriceOfSelectedSeats,
-  getTicketInfo
+  getTicketInfo,
+  setCheckoutStepId
 } from '@/redux/slices/bookTicket'
 import { getHourAndMinute } from '@/utils/datetime'
 import { useDispatch, useSelector } from 'react-redux'
@@ -16,8 +17,9 @@ import { toast } from 'react-toastify'
 import moment from 'moment'
 import { formatPrice } from '@/utils/price'
 import { setTicketInfoToLocalStorage } from '@/utils/localStorage'
+import { BOOK_TICKET_STEP } from '@/constants/bookTicket'
 
-export default function MovieInfoTotal({showTimeRef}) {
+export default function MovieInfoTotal({ showTimeRef }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { selectedFilm, selectedShowtime, selectedCinemaShow, seatList, screenName } = useSelector(
@@ -47,6 +49,7 @@ export default function MovieInfoTotal({showTimeRef}) {
         }))
       )
       setTicketInfoToLocalStorage(ticketInfo)
+      dispatch(setCheckoutStepId(BOOK_TICKET_STEP.FILL_USER_INFO))
       navigate(path.checkout)
     } catch (error) {
       toast.error(error)

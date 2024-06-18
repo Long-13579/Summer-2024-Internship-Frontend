@@ -2,7 +2,7 @@ import React from 'react'
 import SlideAdvertisement from '@/components/SlideAdvertisement'
 import Contact from '@/components/Contact'
 import MembershipContainer from '@/components/MembershipContainer'
-import SlideFilmContainer from '@/components/SlideFilmContainer/SlideFilmContainer'
+import SlideFilmContainer from '@/components/SlideFilmContainer'
 
 export default function HomePage() {
   return (

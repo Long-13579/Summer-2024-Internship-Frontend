@@ -1,6 +1,7 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit'
 import lodash from 'lodash'
 import { NOT_FOUND, REMOVE_ONE_ITEM, SORT_ORDER } from './constants'
+import { BOOK_TICKET_STEP } from '@/constants/bookTicket'
 import moment from 'moment'
 
 const initialState = {
@@ -9,7 +10,10 @@ const initialState = {
   selectedCinemaShow: null,
   screenName: null,
   seatPrice: 0,
-  seatList: []
+  seatList: [],
+  selectedPaymentMethod: null,
+  checkoutStepId: BOOK_TICKET_STEP.CHOOSE_PAYMENT_METHOD,
+  userInfo: {}
 }
 
 const bookTicketSlice = createSlice({
@@ -48,8 +52,17 @@ const bookTicketSlice = createSlice({
       state.selectedShowtime = null
       state.selectedCinemaShow = null
       state.seatList = []
-      state.screenName = null 
+      state.screenName = null
       state.seatPrice = 0
+    },
+    setSelectedPaymentMethod: (state, action) => {
+      state.selectedPaymentMethod = action.payload
+    },
+    setCheckoutStepId: (state, action) => {
+      state.checkoutStepId = action.payload
+    },
+    setUserInfo: (state, action) => {
+      state.userInfo = action.payload
     }
   }
 })
@@ -118,7 +131,10 @@ export const {
   setSeatPrice,
   toggleSelectedSeat,
   clearSeatList,
-  clearShowtime
+  clearShowtime,
+  setSelectedPaymentMethod,
+  setCheckoutStepId,
+  setUserInfo
 } = bookTicketSlice.actions
 
 export default bookTicketSlice.reducer

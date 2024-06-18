@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { getTicketInfoFromLocalStorage, removeTicketInfoFromLocalStorage } from '@/utils/localStorage'
 import { AGE_RATING } from '@/constants/movie'
@@ -14,10 +14,12 @@ import {
   getHourAndMinute,
   getMinuteAndSecond
 } from '@/utils/datetime'
+import { BOOK_TICKET_STEP } from '@/constants/bookTicket'
 
 export default function TicketInfo() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { checkoutStepId } = useSelector((state) => state.bookTicket)
   const [ticketInfo, setTicketInfo] = useState({})
   const [remainingSeconds, setRemainingSeconds] = useState(null)
 
@@ -29,12 +31,11 @@ export default function TicketInfo() {
       setTicketInfo(ticketInfoFromLS)
       setRemainingSeconds(getDifferenceInSeconds(ticketInfoFromLS.expiredTime))
     }
-  }, [navigate])
+  }, [])
 
   useEffect(() => {
-    if (remainingSeconds === null) return
-
-    if (remainingSeconds <= 0) {
+    if (remainingSeconds === null || checkoutStepId === BOOK_TICKET_STEP.SHOW_TICKET_INFO) return
+    if (!remainingSeconds) {
       dispatch(setIsShowPopUp(true))
       dispatch(
         setPopUpContent({
@@ -44,7 +45,6 @@ export default function TicketInfo() {
       )
       removeTicketInfoFromLocalStorage()
     }
-
     const interval = setInterval(() => {
       setRemainingSeconds((prevSeconds) => {
         if (prevSeconds <= 0) {
@@ -56,28 +56,30 @@ export default function TicketInfo() {
     }, 1000)
 
     return () => clearInterval(interval)
-  }, [remainingSeconds, dispatch, ticketInfo])
+  }, [remainingSeconds, dispatch, ticketInfo, checkoutStepId])
 
   const {
     film: { filmInfo: { filmName, ageRate } = {} } = {},
-    cinemaShow: { name: cinemaName, address } = {},
-    showtime: { timeStart, dateStart } = {},
+    cinemaShow: { name: cinemaName = '', address = '' } = {},
+    showtime: { timeStart = '', dateStart = '' } = {},
     seatList = [],
-    seatNames,
-    screenName,
-    totalPrice
+    seatNames = '',
+    screenName = '',
+    totalPrice = 0
   } = ticketInfo
 
   return (
     <div className='flex w-full flex-col gap-6 rounded-sm bg-gradient-to-tr from-blue-custom-700 to-purple-custom-700 p-4'>
       <div className='flex flex-wrap items-center justify-between gap-2'>
         <div className='text-xl font-bold tracking-tighter'>{filmName}</div>
-        <div className='flex items-center gap-2 text-lg font-normal uppercase'>
-          <span>Ticket holding time:</span>
-          <div className='rounded-sm bg-yellow-custom-700 px-3 py-1 text-lg font-bold text-black-custom-700'>
-            {getMinuteAndSecond(remainingSeconds) || '00:00'}
+        {checkoutStepId !== BOOK_TICKET_STEP.SHOW_TICKET_INFO && (
+          <div className='flex items-center gap-2 text-lg font-normal uppercase'>
+            <span>Ticket holding time:</span>
+            <div className='rounded-sm bg-yellow-custom-700 px-3 py-1 text-lg font-bold text-black-custom-700'>
+              {getMinuteAndSecond(remainingSeconds) || '00:00'}
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <div className='text-md font-medium text-yellow-custom-700'>{AGE_RATING[ageRate] || 'No limit age'}</div>
       <div className='flex flex-col gap-1'>

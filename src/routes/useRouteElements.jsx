@@ -34,6 +34,10 @@ export default function useRouteElements() {
         {
           path: path.checkout,
           element: <CheckoutPage />
+        },
+        {
+          path: `${path.checkout}/:id`,
+          element: <CheckoutPage />
         }
       ]
     }
