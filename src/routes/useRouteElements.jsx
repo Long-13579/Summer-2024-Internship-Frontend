@@ -4,7 +4,8 @@ import { path } from './path'
 import MainLayout from '@/layouts/MainLayout'
 import HomePage from '@/pages/HomePage'
 import MovieDetailPage from '@/pages/MovieDetailPage'
-import CheckoutPage from '@/pages/CheckoutPage/CheckoutPage'
+import CheckoutPage from '@/pages/CheckoutPage'
+import CinemaShowPage from '@/pages/CinemaShowPage'
 import OnCasting from '@/pages/ShowingFilmPage/onCasting'
 import UpComing from '@/pages/ComingSoonFilmPage/upComing'
 
@@ -38,6 +39,10 @@ export default function useRouteElements() {
         {
           path: `${path.checkout}/:id`,
           element: <CheckoutPage />
+        },
+        {
+          path: path.cinemaShows,
+          element: <CinemaShowPage />
         }
       ]
     }

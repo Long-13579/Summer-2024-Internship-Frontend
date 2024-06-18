@@ -12,3 +12,14 @@ export const getUpComingFilm = async () => {
 export const getInformationOfFilm = async (id) => {
   return await customFetch.get(FILM_URL, { query: { id }, signalKey: 'getInformationOfFilm' }).catch(showError)
 }
+
+export const getMoviesByCinemaId = async (cinemaId) => {
+  return await customFetch
+    .get(FILM_URL, {
+      signalKey: 'getMoviesByCinemaId',
+      query: {
+        cinemaId
+      }
+    })
+    .catch(showError)
+}

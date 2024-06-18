@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { RIGHT_NAVBAR } from './constants'
 import { useEffect, useState } from 'react'
 import { getCinemasOfProvinces } from '@/apis/province'
+import { path } from '@/routes/path'
 
 export default function Menu() {
   const [cinemas, setCinemas] = useState([])
@@ -28,6 +29,7 @@ export default function Menu() {
               title='Select Province/City'
               listItem={cinemas}
               subItemName='cinemas'
+              directTo={path.cinemaShows}
             />
             <Link to='/' className='flex h-full items-center gap-1 hover:cursor-pointer hover:text-yellow-custom-700'>
               <IconCalendar />

@@ -1,4 +1,6 @@
 import { cn } from '@/lib/utils'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function MultiLevelSelect({
   icon: IconComponent,
@@ -11,14 +13,23 @@ export default function MultiLevelSelect({
   bridgeClass,
   listItem,
   subItemName,
+  directTo,
   ...rest
 }) {
+  const [showSelect, setShowSelect] = useState(false)
+
+  const toggleShowSelect = () => {
+    setShowSelect(!showSelect)
+  }
+
   return (
     <div
       className={cn(
         'group/item relative flex h-full items-center gap-1 hover:cursor-pointer hover:text-yellow-custom-700',
         extraClass
       )}
+      onMouseEnter={toggleShowSelect}
+      onMouseLeave={toggleShowSelect}
       {...rest}
     >
       <IconComponent className={imgClass} />
@@ -46,17 +57,32 @@ export default function MultiLevelSelect({
                     listClass
                   )}
                 >
-                  {item[subItemName].map((subItem) => (
-                    <div
-                      key={subItem.id}
-                      className={cn(
-                        'relative p-2 first:rounded-t-lg last:rounded-b-lg hover:bg-gray-custom-700 hover:text-yellow-custom-700',
-                        itemClass
-                      )}
-                    >
-                      {subItem.name}
-                    </div>
-                  ))}
+                  {item[subItemName].map(({ id, name }) => {
+                    return directTo ? (
+                      <Link
+                        key={id}
+                        to={`${directTo.replace(':id', id)}`}
+                        className={cn(
+                          'relative block p-2 first:rounded-t-lg last:rounded-b-lg hover:bg-gray-custom-700 hover:text-yellow-custom-700',
+                          itemClass
+                        )}
+                        onClick={toggleShowSelect}
+                      >
+                        {name}
+                      </Link>
+                    ) : (
+                      <div
+                        key={id}
+                        className={cn(
+                          'relative p-2 first:rounded-t-lg last:rounded-b-lg hover:bg-gray-custom-700 hover:text-yellow-custom-700',
+                          itemClass
+                        )}
+                        onClick={toggleShowSelect}
+                      >
+                        {name}
+                      </div>
+                    )
+                  })}
                 </div>
               )}
             </div>
