@@ -31,7 +31,7 @@ export default function MovieInfoTotal() {
     try {
       await setSeatsOnHold(
         selectedShowtime.showId,
-        seatList.map(({colId, name}) => ({
+        seatList.map(({ colId, name }) => ({
           rowName: name[0],
           colId: colId,
           onHold: currentTime
