@@ -2,17 +2,24 @@ import ShowsWithinDay from '@/components/ShowsWithinDay'
 import { MOVIE_INFO } from './constants'
 import ImageEmpty from '@/assets/images/img-empty.svg'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { path } from '@/routes/path'
 
 export default function MovieShows({ movie }) {
+  const navigate = useNavigate()
   const [imageError, setImageError] = useState(false)
 
   const handleLoadImageError = () => {
     setImageError(true)
   }
 
+  const navigateToDetailFilmPage = () => {
+    navigate(path.film.replace(':id', movie.infor.id))
+  }
+
   return (
     <div className='flex w-full gap-3'>
-      <div className='min-w-[280px] max-w-[280px]'>
+      <div className='min-w-[280px] max-w-[280px] hover:cursor-pointer' onClick={navigateToDetailFilmPage}>
         <img
           src={imageError ? ImageEmpty : movie.infor.poster}
           onError={handleLoadImageError}
@@ -34,7 +41,7 @@ export default function MovieShows({ movie }) {
             )}
           </div>
         </div>
-        <div className='mt-4 flex w-full flex-col gap-y-[6px]'>
+        <div className='mt-2 flex w-full flex-col gap-y-[6px]'>
           {movie.showTime.map((showTime) => (
             <ShowsWithinDay key={showTime.dateStart} showTime={showTime} />
           ))}

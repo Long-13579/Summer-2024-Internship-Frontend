@@ -14,6 +14,7 @@ import {
   getHourAndMinute,
   getMinuteAndSecond
 } from '@/utils/datetime'
+import { cn } from '@/lib/utils'
 import { BOOK_TICKET_STEP } from '@/constants/bookTicket'
 
 export default function TicketInfo() {

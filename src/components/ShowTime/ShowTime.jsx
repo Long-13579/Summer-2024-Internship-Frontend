@@ -4,21 +4,42 @@ import IconLocation from '@/assets/images/ic-location.svg?react'
 import IconMovie from '@/assets/images/ic-movie.svg?react'
 import { forwardRef, useEffect, useRef, useState } from 'react'
 import { cn } from '@/lib/utils'
-import { getCinemaShowOfFilm } from '@/apis/show'
-import { useDispatch } from 'react-redux'
-import { clearShowtime, setSelectedFilm } from '@/redux/slices/bookTicket'
+import { getCinemaShowOfFilm, getShowInfo } from '@/apis/show'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  clearSeatList,
+  clearShowtime,
+  setSelectedCinemaShow,
+  setSelectedFilm,
+  setSelectedShowtime
+} from '@/redux/slices/bookTicket'
+import useQuery from '@/hooks/useQuery'
+import { getCinemaInfo } from '@/apis/cinema'
+import { isCurrentTimeGreaterThan } from '@/utils/datetime'
 
 const ShowTime = forwardRef(({ film }, ref) => {
   const dispatch = useDispatch()
+
+  const { selectedCinemaShow } = useSelector((state) => state.bookTicket)
   const [isShowList, setIsShowList] = useState(false)
   const [selectedProvinceCity, setSelectedProvinceCity] = useState(null)
   const [selectedDate, setSelectedDate] = useState(null)
   const [cinemaShows, setCinemaShows] = useState([])
 
+  const queryObj = useQuery()
+
   const listRef = useRef(null)
 
   const toggleShowList = () => {
     setIsShowList(!isShowList)
+  }
+
+  const handleSelectShowtime = (showtime) => {
+    if (!isCurrentTimeGreaterThan(showtime.time)) {
+      dispatch(setSelectedCinemaShow(selectedCinemaShow))
+      dispatch(setSelectedShowtime(showtime))
+      dispatch(clearSeatList())
+    }
   }
 
   const handleClickOutside = (event) => {
@@ -39,8 +60,33 @@ const ShowTime = forwardRef(({ film }, ref) => {
     setCinemaShows(cinemaShowOfFilm)
   }
 
+  const fetchCinemaById = async (cinemaId) => {
+    const cinemaInfo = await getCinemaInfo(cinemaId)
+    if (cinemaInfo) {
+      const { name: cinemaName, address: cinemaAddress, provinceId: id, provinceCity: name, ...rest } = cinemaInfo
+      setSelectedProvinceCity({ id, name })
+      dispatch(setSelectedCinemaShow({ id: cinemaId, name: cinemaName, address: cinemaAddress }))
+    }
+  }
+
+  const fetchShowById = async (id) => {
+    const showInfo = await getShowInfo(id)
+    if (showInfo) {
+      const { id, screenId, dateStart, timeStart } = showInfo
+      setSelectedDate(dateStart)
+      handleSelectShowtime({ id, screenId, dateStart, timeStart })
+    }
+  }
+
   useEffect(() => {
     dispatch(setSelectedFilm(film))
+    const { cinemaId, showId } = queryObj
+    if (cinemaId) {
+      fetchCinemaById(cinemaId)
+    }
+    if (showId) {
+      fetchShowById(showId)
+    }
     document.addEventListener('mousedown', handleClickOutside)
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
@@ -53,7 +99,7 @@ const ShowTime = forwardRef(({ film }, ref) => {
     if (film) {
       const { dateList, provinceList } = film
 
-      if (dateList && dateList.length > 0) {
+      if (dateList && dateList.length > 0 && !selectedDate) {
         setSelectedDate(dateList[0])
       }
 
@@ -64,7 +110,13 @@ const ShowTime = forwardRef(({ film }, ref) => {
   }, [film])
 
   useEffect(() => {
-    fetchCinemaShowOfFilm(film?.filmInfo?.id, selectedDate, selectedProvinceCity?.id)
+    if (film) {
+      const filmId = film.filmInfo.id
+      const selectedProvinceCityId = selectedProvinceCity?.id
+      if (filmId && selectedDate && selectedProvinceCityId) {
+        fetchCinemaShowOfFilm(filmId, selectedDate, selectedProvinceCityId)
+      }
+    }
   }, [selectedDate, selectedProvinceCity])
 
   return (

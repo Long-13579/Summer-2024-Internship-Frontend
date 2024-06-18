@@ -3,14 +3,15 @@ import MovieDetailInfo from '@/components/MovieDetailInfo'
 import MovieInfoTotal from '@/components/MovieInfoTotal'
 import SeatingMap from '@/components/SeatingMap'
 import ShowTime from '@/components/ShowTime'
-import { countSelectedSeats } from '@/redux/slices/bookTicket'
+import { clearShowtime, countSelectedSeats } from '@/redux/slices/bookTicket'
 import { useEffect, useState, useRef } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
 export default function MovieDetailPage() {
   const { id: filmId } = useParams()
-  const [filmDetail, setFilmDetail] = useState({})
+  const dispatch = useDispatch()
+  const [filmDetail, setFilmDetail] = useState(null)
   const { selectedShowtime } = useSelector((state) => state.bookTicket)
   const numOfSelectedSeats = useSelector(countSelectedSeats)
   const seatingMapRef = useRef(null)
@@ -22,6 +23,7 @@ export default function MovieDetailPage() {
   }
 
   useEffect(() => {
+    dispatch(clearShowtime())
     fetchInformationOfFilm(filmId)
   }, [filmId])
 
@@ -29,7 +31,7 @@ export default function MovieDetailPage() {
     if (selectedShowtime && seatingMapRef.current) {
       seatingMapRef.current.scrollIntoView({ behavior: 'smooth' })
     }
-  }, [selectedShowtime])
+  }, [selectedShowtime, seatingMapRef.current])
 
   return (
     <div className='min-h-[100vh] w-full bg-main pt-6'>
