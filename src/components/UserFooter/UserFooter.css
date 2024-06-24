@@ -1,0 +1,131 @@
+.container {
+    background: linear-gradient(45deg, #64369C, #3960C6); /* Adjust the gradient colors and angle */
+    color: white;
+    padding: 40px 15px;
+    width: 100%;
+}
+
+
+.footer-wr {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.footer-item {
+    flex: 1;
+}
+.txt-desktop{
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+.col-2 {
+    width: 16.666%; /* Each col-2 item takes one-sixth of the container */
+}
+.col-4 {
+    width: 33.333%; /* Each col-4 item takes one-third of the container */
+}
+
+.col-3 {
+    flex: 0 0 25%; /* Each col-4 item takes one-third of the container */
+}
+
+.col-6 {
+    flex: 0 0 50%; /* Each col-2 item takes one-sixth of the container */
+}
+
+.ft-logo img {
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.ft-text {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 16px; /* Adjusted font size */
+}
+
+.ft-hotline-social {
+    display: flex;
+    justify-content: center; /* Center the icons horizontally */
+    margin-top: 10px;
+}
+
+.ft-hotline-social img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    transition: transform 0.3s ease-in-out; /* Smooth transition effect */
+}
+
+.ft-hotline-social img:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.footer-item-top,
+.footer-item-bot {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col {
+    flex: 1;
+    padding: 10px;
+}
+
+.col.col-6 {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 10px;
+}
+
+.text {
+    font-family: var(--font-title);
+    text-transform: uppercase;
+    font-weight: bold; /* Corrected 'bolder' to 'bold' */
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-item {
+    margin-bottom: 10px;
+}
+
+.menu-link {
+    color: white;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s;
+}
+
+.menu-link::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(120deg, transparent, gold, transparent);
+    background-size: 200%;
+    transition: background-position 0.3s ease-in-out;
+    z-index: -1;
+}
+
+.menu-link:hover::before {
+    background-position: 100%;
+}
+:root {
+    --font-title: "Anton", sans-serif;
+    --font-pri: "Josefin Sans", sans-serif;}

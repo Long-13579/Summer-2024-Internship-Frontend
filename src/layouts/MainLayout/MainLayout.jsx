@@ -1,4 +1,5 @@
 import HeaderUser from '@/components/HeaderUser'
+import UserFooter from '@/components/UserFooter'
 import { Outlet } from 'react-router-dom'
 
 export default function MainLayout() {
@@ -8,6 +9,7 @@ export default function MainLayout() {
       <div className='mx-auto my-0 block max-w-container pt-header-user'>
         <Outlet />
       </div>
+      <UserFooter />
     </>
   )
 }
