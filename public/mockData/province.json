@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Da Nang",
+    "cinemas": [
+      {
+        "id": 1,
+        "name": "CGV VinCom",
+        "address": "123 lalalal"
+      },
+      {
+        "id": 2,
+        "name": "CGV VinCom 1212",
+        "address": "345 ưeqeweq"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Tp. Ho Chi Minh",
+    "cinemas": [
+      {
+        "id": 3,
+        "name": "CineStar Sinh Vien",
+        "address": "34 NTT"
+      },
+      {
+        "id": 4,
+        "name": "VinCom ne",
+        "address": "345"
+      }
+    ]
+  }
+]

@@ -50,7 +50,8 @@ module.exports = {
         'yellow-custom-700': 'var(--yellow-color)',
         'black-custom-700': 'var(--black-color)',
         'blue-custom-700': 'var(--blue-color)',
-        'purple-custom-700': 'var(--purple-color)'
+        'purple-custom-700': 'var(--purple-color)',
+        'gray-custom-700': 'var(--dark-gray-color)'
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -73,14 +74,24 @@ module.exports = {
       },
       maxWidth: {
         container: 'var(--max-width)'
-      },
-      height: {
-        'header-user': 'var(--header-user-height)'
-      },
-      padding: {
-        'header-user': 'var(--header-user-height)'
       }
     }
   },
-  plugins: [require('tailwindcss-animate')]
+  plugins: [
+    require('tailwindcss-animate'),
+    function ({ addUtilities }) {
+      const values = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+
+      const utilities = values.reduce((acc, value) => {
+        return {
+          ...acc,
+          [`.underline-offset-${value}`]: {
+            textUnderlineOffset: `${value}px`
+          }
+        }
+      }, {})
+
+      addUtilities(utilities, ['responsive', 'hover'])
+    }
+  ]
 }

@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 
-export default function Button({ title, icon, extraClass = '', imgClass = '', txtClass = '', ...rest }) {
+export default function Button({ title, icon: IconComponent, extraClass = '', imgClass = '', txtClass = '', ...rest }) {
   return (
     <div
       className={cn(
@@ -9,10 +9,8 @@ export default function Button({ title, icon, extraClass = '', imgClass = '', tx
       )}
       {...rest}
     >
-      {icon && (
-        <img
-          src={icon.src}
-          alt={icon.alt}
+      {IconComponent && (
+        <IconComponent
           className={cn('transition-filter z-10 h-7 duration-500 ease-in-out group-hover:invert', imgClass)}
         />
       )}

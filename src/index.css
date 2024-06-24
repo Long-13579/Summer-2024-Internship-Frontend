@@ -36,7 +36,6 @@
 
     /* Width & height */
     --max-width: 1200px;
-    --header-user-height: 72px;
 
     /* Color */
     --main-color: #0f172a;
@@ -45,6 +44,7 @@
     --black-color: #0f172a;
     --blue-color: #3960c5;
     --purple-color: #63369c;
+    --dark-gray-color: #21283A;
   }
 
   .dark {
