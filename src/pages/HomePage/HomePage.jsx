@@ -1,11 +1,16 @@
+import React from 'react'
+import SlideAdvertisement from '@/components/SlideAdvertisement'
+import Contact from '@/components/Contact'
 import MembershipContainer from '@/components/MembershipContainer'
-import Contact from "@/components/Contact";
+import SlideFilmContainer from '@/components/SlideFilmContainer/SlideFilmContainer'
 
 export default function HomePage() {
   return (
-    <div className="bg-primary text-white min-h-screen">
+    <div className='min-h-screen bg-primary text-white'>
+      <SlideAdvertisement />
+      <SlideFilmContainer />
       <MembershipContainer />
-      <Contact/>
+      <Contact />
     </div>
   )
 }

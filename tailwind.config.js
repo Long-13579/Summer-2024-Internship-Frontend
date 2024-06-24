@@ -81,6 +81,9 @@ module.exports = {
       },
       boxShadow: {
         'lg-yellow-700': 'var(--shadow-lg-yellow-700)'
+      },
+      width: {
+        'button-expanded': 'calc(100% + 2px)'
       }
     }
   },

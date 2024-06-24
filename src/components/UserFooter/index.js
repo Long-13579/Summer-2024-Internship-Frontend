@@ -1,3 +1,3 @@
-import UserFooter from "./UserFooter";
+import UserFooter from './UserFooter'
 
-export default UserFooter;
+export default UserFooter
