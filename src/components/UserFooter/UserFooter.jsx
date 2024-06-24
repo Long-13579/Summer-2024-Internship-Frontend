@@ -1,5 +1,5 @@
 import React from "react";
-import "./UserFooter.scss";
+import "./UserFooter.css";
 import facebookIcon from "../../assets/icon-facebook.svg";
 import instagramIcon from "../../assets/icon-instagram.svg";
 import tiktokIcon from "../../assets/icon-tiktok.svg";
