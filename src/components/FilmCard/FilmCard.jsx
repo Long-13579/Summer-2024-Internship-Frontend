@@ -43,16 +43,18 @@ const FilmCard = ({ film }) => {
 
   return (
     <div
-      className='group/card relative max-w-xs cursor-pointer overflow-hidden rounded-lg text-white shadow-lg'
+      className='group/card relative flex w-full max-w-xs cursor-pointer flex-col overflow-hidden rounded-lg text-white shadow-lg'
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onDragStart={handleDragStart}
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
     >
-      <Link to={`/film/${id}`} onClick={handleClick}>
-        <div className='relative flex justify-center'>
-          <img src={poster} alt={title} className='h-auto w-full rounded-lg' />
+      <Link to={`/film/${id}`} onClick={handleClick} className='block'>
+        <div className='relative flex h-full justify-center'>
+          <div className='aspect-h-3 aspect-w-2 w-full overflow-hidden rounded-lg'>
+            <img src={poster} alt={title} className='h-full w-full object-cover' />
+          </div>
           <div className='absolute left-0 top-2 -translate-y-2 transform rounded bg-yellow-500 px-2 font-bold text-black transition-transform duration-300 group-hover/card:-translate-y-1'>
             {ageRating}
           </div>
@@ -61,10 +63,10 @@ const FilmCard = ({ film }) => {
           </div>
           <div className='absolute inset-0 flex flex-col items-start justify-center space-y-2 bg-gray-900 bg-opacity-90 p-4 text-left opacity-0 transition-opacity duration-300 group-hover/card:opacity-100'>
             <h2 className='text-center text-xl font-bold'>{title}</h2>
-            {filmDetails.map((detail, index) => (
+            {filmDetails.map(({ icon: IconComponent, label, value }, index) => (
               <div key={index} className='flex items-center space-x-2'>
-                <detail.icon className='h-5 w-5' alt={detail.label} />
-                <p>{detail.value}</p>
+                <IconComponent className='h-5 w-5' alt={label} />
+                <p>{value}</p>
               </div>
             ))}
           </div>
