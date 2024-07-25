@@ -2,13 +2,13 @@ import TimeCard from '@/components/TimeCard'
 import CinemaShow from '@/components/CinemaShow'
 import IconLocation from '@/assets/images/ic-location.svg?react'
 import IconMovie from '@/assets/images/ic-movie.svg?react'
-import { useEffect, useRef, useState } from 'react'
+import { forwardRef, useEffect, useRef, useState } from 'react'
 import { cn } from '@/lib/utils'
 import { getCinemaShowOfFilm } from '@/apis/show'
 import { useDispatch } from 'react-redux'
 import { clearShowtime, setSelectedFilm } from '@/redux/slices/bookTicket'
 
-export default function ShowTime({ film }) {
+const ShowTime = forwardRef(({ film }, ref) => {
   const dispatch = useDispatch()
   const [isShowList, setIsShowList] = useState(false)
   const [selectedProvinceCity, setSelectedProvinceCity] = useState(null)
@@ -68,7 +68,7 @@ export default function ShowTime({ film }) {
   }, [selectedDate, selectedProvinceCity])
 
   return (
-    <div className='p-20'>
+    <div className='p-20' ref={ref}>
       <div className='py-10'>
         <h1 className='w-full text-center text-3xl font-bold uppercase'>Showtimes</h1>
         <div className='mt-6 flex w-full flex-wrap items-center justify-center gap-3'>
@@ -126,4 +126,6 @@ export default function ShowTime({ film }) {
       </div>
     </div>
   )
-}
+})
+
+export default ShowTime

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { forwardRef, useEffect, useRef, useState } from 'react'
 import ImgScreen from '@/assets/images/img-screen.png'
 import Seat from '@/components/Seat'
 import SeatLegendItem from '@/components/SeatLegendItem'
@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 import { getSelectedShowtime } from '@/redux/slices/bookTicket'
 import { getShowInfo } from '@/apis/show'
 
-export default function SeatingMap() {
+const SeatingMap = forwardRef((_, ref) => {
   const selectedShowtime = useSelector(getSelectedShowtime)
   const [seats, setSeats] = useState(null)
   const tableRef = useRef(null)
@@ -29,7 +29,7 @@ export default function SeatingMap() {
   }, [seats])
 
   return (
-    <div className='mt-10 pb-10'>
+    <div className='mt-10 pb-10' ref={ref}>
       <h1 className='w-full text-center text-3xl font-bold uppercase'>
         Select Seats - Screen {selectedShowtime.screenId}
       </h1>
@@ -66,4 +66,6 @@ export default function SeatingMap() {
       </div>
     </div>
   )
-}
+})
+
+export default SeatingMap

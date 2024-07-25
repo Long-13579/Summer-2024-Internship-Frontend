@@ -1,13 +1,6 @@
 import Button from '@/components/Button'
 import IconClose from '@/assets/images/ic-close.svg?react'
-import {
-  countSelectedSeats,
-  selectedSeatNamesString,
-  setSelectedCinemaShow,
-  setSelectedFilm,
-  setSelectedShowtime,
-  clearShowtime
-} from '@/redux/slices/bookTicket'
+import { countSelectedSeats, selectedSeatNamesString, clearShowtime } from '@/redux/slices/bookTicket'
 import { getHourAndMinute } from '@/utils/datetime'
 import { useDispatch, useSelector } from 'react-redux'
 import { path } from '@/routes/path'
@@ -16,14 +9,18 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import moment from 'moment'
 
-export default function MovieInfoTotal() {
+export default function MovieInfoTotal({showTimeRef}) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { selectedFilm, selectedShowtime, selectedCinemaShow, seatList } = useSelector((state) => state.bookTicket)
   const seatNames = useSelector(selectedSeatNamesString)
   const numOfSelectedSeats = useSelector(countSelectedSeats)
+
   const handleClose = () => {
     dispatch(clearShowtime())
+    if (showTimeRef.current) {
+      showTimeRef.current.scrollIntoView({ behavior: 'smooth' })
+    }
   }
 
   const handleSubmitSeats = async () => {
@@ -31,7 +28,7 @@ export default function MovieInfoTotal() {
     try {
       await setSeatsOnHold(
         selectedShowtime.showId,
-        seatList.map(({colId, name}) => ({
+        seatList.map(({ colId, name }) => ({
           rowName: name[0],
           colId: colId,
           onHold: currentTime
