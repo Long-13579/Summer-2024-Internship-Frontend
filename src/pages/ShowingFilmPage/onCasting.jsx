@@ -16,8 +16,8 @@ export default function OnCasting() {
 
   return (
     <div className='mb-8 flex w-full flex-col items-center'>
-      <div className='relative max-w-container px-[12px] text-center'>
-        <h1 className='py-10 font-sans text-4xl font-bold text-white'>Now Showing</h1>
+      <div className='relative w-full max-w-container px-container'>
+        <h1 className='py-10 text-center font-sans text-4xl font-bold text-white'>Now Showing</h1>
         <ListFilm films={onCasting} />
       </div>
     </div>
