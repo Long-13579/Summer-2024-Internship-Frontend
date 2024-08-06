@@ -55,11 +55,13 @@ const FilmCard = ({ film }) => {
           <div className='aspect-h-3 aspect-w-2 w-full overflow-hidden rounded-lg'>
             <img src={poster} alt={title} className='h-full w-full object-cover' />
           </div>
-          <div className='absolute left-0 top-2 -translate-y-2 transform rounded bg-yellow-500 px-2 font-bold text-black transition-transform duration-300 group-hover/card:-translate-y-1'>
-            {ageRating}
-          </div>
-          <div className='absolute left-9 top-2 -translate-y-2 transform rounded bg-red-500 px-2 font-bold text-white transition-transform duration-300 group-hover/card:-translate-y-1'>
-            {format}
+          <div className='absolute left-0 top-2 flex -translate-y-2 transform flex-row'>
+            <div className='min-w-[40px] bg-yellow-500 px-2 text-center font-bold text-black opacity-90 transition-transform duration-300 group-hover/card:-translate-y-1'>
+              {ageRating}
+            </div>
+            <div className='min-w-[40px] bg-red-500 px-2 text-center font-bold text-white opacity-90 transition-transform duration-300 group-hover/card:-translate-y-1'>
+              {format}
+            </div>
           </div>
           <div className='absolute inset-0 flex flex-col items-start justify-center space-y-2 bg-gray-900 bg-opacity-90 p-4 text-left opacity-0 transition-opacity duration-300 group-hover/card:opacity-100'>
             <h2 className='text-center text-xl font-bold'>{title}</h2>
