@@ -70,7 +70,7 @@ const ShowTime = forwardRef(({ film }, ref) => {
   return (
     <div className='p-20' ref={ref}>
       <div className='py-10'>
-        <h1 className='w-full text-center text-3xl font-bold uppercase'>Showtimes</h1>
+        <h1 className='w-full text-center text-3xl font-bold uppercase'>Showtime</h1>
         <div className='mt-6 flex w-full flex-wrap items-center justify-center gap-3'>
           {film?.dateList?.map((date) => (
             <TimeCard key={date} time={date} isSelected={date === selectedDate} setSelectedDate={setSelectedDate} />

@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   isShowMovieOverlay: false,
   isShowPopUp: false,
-  popUpContent: {}
+  popUpContent: {},
+  filmIdOfShowedTrailer: null
 }
 
 const uiSlice = createSlice({
@@ -18,10 +19,13 @@ const uiSlice = createSlice({
     },
     setPopUpContent: (state, action) => {
       state.popUpContent = action.payload
+    },
+    setFilmIdOfShowedTrailer: (state, action) => {
+      state.filmIdOfShowedTrailer = action.payload
     }
   }
 })
 
-export const { toggleMovieOverlay, setIsShowPopUp, setPopUpContent } = uiSlice.actions
+export const { toggleMovieOverlay, setIsShowPopUp, setPopUpContent, setFilmIdOfShowedTrailer } = uiSlice.actions
 
 export default uiSlice.reducer
