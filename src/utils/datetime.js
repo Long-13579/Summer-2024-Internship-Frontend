@@ -20,7 +20,6 @@ export const isCurrentTimeGreaterThan = (givenDate, givenTime) => {
     const currentTime = moment()
     const givenDateTimeString = `${givenDate} ${givenTime}`
     const givenMoment = moment(givenDateTimeString, 'YYYY-MM-DD HH:mm:ss')
-
     return currentTime.isAfter(givenMoment)
   }
   return null
