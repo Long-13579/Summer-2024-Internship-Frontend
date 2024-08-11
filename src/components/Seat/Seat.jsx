@@ -20,7 +20,7 @@ export default function Seat({ seat }) {
         'hover:cursor-pointer': isSeat && !isSold,
         'hover:cursor-default': !isSeat || isSold || (onHold && !isCurrentTimeWithOtherTimezoneGreaterThan(onHold))
       })}
-      onClick={isSold || (onHold && !isCurrentTimeWithOtherTimezoneGreaterThan(onHold)) ? null : toggleSelected}
+      onClick={!isSeat || isSold || (onHold && !isCurrentTimeWithOtherTimezoneGreaterThan(onHold)) ? null : toggleSelected}
     >
       {isSeat && (
         <>

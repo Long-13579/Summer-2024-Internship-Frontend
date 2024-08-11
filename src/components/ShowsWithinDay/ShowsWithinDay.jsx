@@ -38,11 +38,12 @@ export default function ShowsWithinDay({ filmId, showTime }) {
               <div
                 key={show.id}
                 className={cn('w-[55px] rounded-sm border py-1 text-center text-sm font-medium', {
-                  'border-gray-custom-500 text-gray-custom-500': isCurrentTimeGreaterThan(
+                  'border-gray-custom-500 text-gray-custom-500 hover:cursor-default': isCurrentTimeGreaterThan(
+                    showTime.dateStart,
                     getHourAndMinute(show.timeStart)
                   ),
                   'border-white-custom-700 text-white-custom-700 hover:cursor-pointer hover:border-yellow-custom-700 hover:text-yellow-custom-700':
-                    !isCurrentTimeGreaterThan(getHourAndMinute(show.timeStart))
+                    !isCurrentTimeGreaterThan(showTime.dateStart, getHourAndMinute(show.timeStart))
                 })}
                 onClick={() => handleSelectShowtime(show)}
               >
